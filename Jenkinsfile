@@ -2,33 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Stage1-SCM') {
+        stage('Clone Code') {
             steps {
-                echo 'Hello World'
+                git 'https://github.com/your-repo/app.git'
             }
         }
-            stage('Stage2') {
+
+        stage('Build Docker Image') {
             steps {
-                echo 'Hello World'
-                echo 'Hello World'
+                script {
+                    docker.build("myapp:latest")
+                }
             }
         }
-stage('Stage3') {
+
+        stage('Run Container') {
             steps {
-                echo 'Hello World'
-                echo 'Hello World'
-            }
-        }
-stage('Stage4') {
-            steps {
-                echo 'Hello World'
-                echo 'Hello World'
-            }
-        }
-stage('Stage5') {
-            steps {
-                echo 'Hello World'
-                echo 'Hello World'
+                script {
+                    docker.image("myapp:latest").run("-d -p 8080:8080")
+                }
             }
         }
     }
