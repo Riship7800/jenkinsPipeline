@@ -1,5 +1,9 @@
+### Docker installation & giving jenkins user to run docker :
 sudo apt update && sudo apt install -y docker.io
 sudo systemctl enable --now docker
 docker --version
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
+
+### Jenkins installation on ubuntu :
+Follow this steps :- https://www.jenkins.io/doc/book/installing/linux/
