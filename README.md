@@ -1,23 +1,24 @@
-# **Git Installation & Plugin Setup on Ubuntu**
+# **Docker + Jenkins Installation on Ubuntu**
 
 ## **Overview:**
-This project demonstrates the hands-on installation and configuration of Git and essential CI/CD plugins on Ubuntu. I performed the entire process manually, verified installation, and tested plugin functionality.
+This project demonstrates the complete installation and setup of Docker and Jenkins on Ubuntu.I performed the entire setup hands-on, including installation, configuration, service management, and verification of both tools.
 
 ## **What I Did:**
-+ Installed Git on Ubuntu
-+ Configured global Git username & email
-+ Installed required Git plugins
-+ Verified versions and plugin status
-+ Documented all steps and results
-+ Added screenshots & logs
++ Installed Docker Engine on Ubuntu
++ Verified Docker installation (docker --version, docker ps)
++ Installed Jenkins on port 8080
++ Configured Jenkins as a service
++ Resolved port conflicts and service issues
++ Documented all steps, outputs, and results
 
 ## **Files Included:**
-+ task-documentation.pdf
++ Jenkinsfile
 + commands-used.txt
 + /screenshots folder
 
 # **Skills Shown:**
-+ Linux commands
-+ Git configuration
-+ Plugin setup
-+ Basic DevOps workflow understanding
++ Linux system administration
++ Docker installation & service management
++ Jenkins installation, configuration & plugin setup
++ Troubleshooting port conflicts
++ DevOps toolchain setup
