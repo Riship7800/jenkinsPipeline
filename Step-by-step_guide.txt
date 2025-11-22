@@ -1,0 +1,92 @@
+🔧 Jenkins + Docker Integration (Step by Step)
+1. Install Docker (if there is a single node for jenkins and docker follow the same steps)
+Make sure Docker is installed and running on the same machine where Jenkins is installed.
+
+        sudo apt update && sudo apt install -y docker.io
+        sudo systemctl enable --now docker
+        docker --version
+
+
+2. Give Jenkins user permission to run Docker
+By default, Jenkins runs under the user jenkins, and this user needs permission to run Docker.
+         sudo usermod -aG docker jenkins
+         sudo systemctl restart jenkins
+
+(Logout and login again if needed to apply group changes.)
+
+
+3. Install Jenkins plugins for Docker
+In Jenkins UI:
+Go to Manage Jenkins → Plugins → Available Plugins.
+Install:
+Docker
+Docker Pipeline
+(Optional) Docker API for Jenkins
+
+
+4. Configure Docker in Jenkins
+Go to Manage Jenkins → Nodes and Clouds → Configure Clouds → Add new cloud → Docker
+Enter Docker host URI:
+If Docker is on the same machine:
+         unix:///var/run/docker.sock
+If remote Docker:
+         tcp://<docker_host_ip>:2375
+
+
+5. Create a Jenkins Pipeline with Docker
+Example Jenkinsfile:
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/your-repo/app.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build("myapp:latest")
+                }
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                script {
+                    docker.image("myapp:latest").run("-d -p 8080:8080")
+                }
+            }
+        }
+    }
+}
+
+
+6. Test the Pipeline
+Create a Pipeline job in Jenkins.
+Paste the Jenkinsfile or link to your Git repo.
+Run the job.
+Jenkins should build a Docker image and start a container.
+
+
+7. Add DockerHub Credentials
+Go to Jenkins → Manage Jenkins → Credentials → Global
+Add Username + Password for DockerHub.
+Use dockerhub-creds as the ID.
+
+
+
+8. (Optional) Push Docker Image to DockerHub
+Add credentials for DockerHub in Jenkins and modify pipeline:
+
+stage('Push to DockerHub') {
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
+                docker.image("myapp:latest").push("latest")
+            }
+        }
+    }
+}
