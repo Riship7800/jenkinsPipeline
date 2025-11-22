@@ -1,15 +1,15 @@
-# **Docker + Jenkins Installation on Ubuntu**
+# **Jenkins + Docker Integration**
 
 ## **Overview:**
-This project demonstrates the complete installation and setup of Docker and Jenkins on Ubuntu.I performed the entire setup hands-on, including installation, configuration, service management, and verification of both tools.
+This project demonstrates complete Docker + Jenkins CI/CD integration on a single Ubuntu node. I performed installation, configuration, plugin setup, pipeline creation, and container deployment hands-on.
 
 ## **What I Did:**
 + Installed Docker Engine on Ubuntu
 + Verified Docker installation (docker --version, docker ps)
-+ Installed Jenkins on port 8080
-+ Configured Jenkins as a service
-+ Resolved port conflicts and service issues
-+ Documented all steps, outputs, and results
++ Jenkins configuration
++ CI/CD pipeline creation
++ Docker image build & deploy
++ Jenkins + Docker integration
 
 ## **Files Included:**
 + Jenkinsfile
